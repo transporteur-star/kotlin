@@ -1,8 +1,13 @@
 package com.jack.recyclerviewapp2
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import com.jack.recyclerviewapp2.databinding.ActivityMainBinding
@@ -21,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_RecyclerViewApp2)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
+
 
         bookList = mutableListOf()
 
@@ -31,15 +36,24 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        addBook()
+        binding.toolbar.btnBack.visibility = View.GONE
+
         getUserdata()
+        addBook()
 
+    }
 
+    private fun addBook() {
+        binding.toolbar.btnAddNewBook.setOnClickListener {
+
+            val intent = Intent(this, RegisterBook::class.java)
+            startActivity(intent)
+        }
     }
 
     // Load
     private fun getUserdata() {
-        dbref = FirebaseDatabase.getInstance().getReference("Users")
+        dbref = FirebaseDatabase.getInstance().getReference("Books")
 
         dbref.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -65,18 +79,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    private fun addBook() {
-        binding.btnAdd.setOnClickListener {
-            val bookTitle = binding.txtEditBookTitle.text.toString()
-            if (bookTitle.isEmpty()) {
-                Toast.makeText(this, "Enter your book title", Toast.LENGTH_SHORT).show()
-            } else {
-                dbref = FirebaseDatabase.getInstance().reference
-                val bookItem = Book(bookTitle, false)
-                dbref.child("Users").push().setValue(bookItem)
-//
-            }
-        }
-    }
+//    private fun add1Book() {
+//        binding.btnAdd.setOnClickListener {
+//            val bookTitle = binding.txtEditBookTitle.text.toString()
+//            if (bookTitle.isEmpty()) {
+//                Toast.makeText(this, "Enter your book title", Toast.LENGTH_SHORT).show()
+//            } else {
+//                dbref = FirebaseDatabase.getInstance().reference
+//                val bookItem = Book(bookTitle, "", "", false)
+//                dbref.child("Users").push().setValue(bookItem)
+////
+//            }
+//        }
+//    }
 }

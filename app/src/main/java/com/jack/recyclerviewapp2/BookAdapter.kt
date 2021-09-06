@@ -19,6 +19,8 @@ class BookAdapter (
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         holder.binding.txtBookTitle.text = bookList[position].bookTitle
         holder.binding.cbDone.isChecked = bookList[position].isChecked!!
+        holder.binding.txtComment.text = bookList[position].comment
+        holder.binding.txtDate.text = bookList[position].date
     }
 
     override fun getItemCount(): Int {
