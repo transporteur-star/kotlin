@@ -32,6 +32,7 @@
         <EditText
             android:id="@+id/input_date"
             android:gravity="center"
+            android:inputType="date"
             android:hint="gewgiwegwegew"
             android:maxLength="15"
             android:layout_width="match_parent"
@@ -63,6 +64,7 @@
             android:id="@+id/input_title"
             android:maxLength="12"
             android:gravity="center"
+            android:inputType="text"
             android:hint="Kotlin 入門書"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -93,6 +95,7 @@
             android:id="@+id/input_comment"
             android:gravity="center"
             android:hint="¥3,000で購入"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

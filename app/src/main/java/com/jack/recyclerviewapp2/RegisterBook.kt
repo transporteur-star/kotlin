@@ -56,11 +56,12 @@ class RegisterBook : AppCompatActivity() {
 
 
             if (title.isEmpty()) {
-                Toast.makeText(this, "Please Enter Book title.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please Enter the title of the Book.", Toast.LENGTH_SHORT).show()
             } else {
                 dbref = FirebaseDatabase.getInstance().reference
-                val bookItem = Book(title, date, comment, false)
-                dbref.child("Books").push().setValue(bookItem)
+                val bookRef = dbref.child("Books").push()
+                val bookItem = Book(title, date, comment, false, bookRef.key)
+                bookRef.setValue(bookItem)
                 finish()
             }
         }

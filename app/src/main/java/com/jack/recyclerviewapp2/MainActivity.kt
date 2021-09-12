@@ -4,12 +4,15 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+import com.jack.recyclerviewapp2.OnClick.ClickListener
+import com.jack.recyclerviewapp2.OnClick.addOnItemClickListener
 import com.jack.recyclerviewapp2.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -36,12 +39,15 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
+
+
         binding.toolbar.btnBack.visibility = View.GONE
 
         getUserdata()
         addBook()
 
     }
+
 
     private fun addBook() {
         binding.toolbar.btnAddNewBook.setOnClickListener {
@@ -50,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 
     // Load
     private fun getUserdata() {
@@ -79,17 +86,5 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    private fun add1Book() {
-//        binding.btnAdd.setOnClickListener {
-//            val bookTitle = binding.txtEditBookTitle.text.toString()
-//            if (bookTitle.isEmpty()) {
-//                Toast.makeText(this, "Enter your book title", Toast.LENGTH_SHORT).show()
-//            } else {
-//                dbref = FirebaseDatabase.getInstance().reference
-//                val bookItem = Book(bookTitle, "", "", false)
-//                dbref.child("Users").push().setValue(bookItem)
-////
-//            }
-//        }
-//    }
+
 }

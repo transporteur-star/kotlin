@@ -5,4 +5,5 @@ data class Book (
     val date: String? = "",
     val comment: String? ="",
     val isChecked: Boolean? = false,
+    val key: String? = "",
         )
