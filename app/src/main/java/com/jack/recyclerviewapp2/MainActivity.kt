@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var dbref: DatabaseReference
 
+
     private lateinit var binding:ActivityMainBinding
     private lateinit var adapter: BookAdapter
     private lateinit var bookList: MutableList<Book>
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // Load
+    // リサイクルビューにbookアイテムをロード
     private fun getUserdata() {
         dbref = FirebaseDatabase.getInstance().getReference("Books")
 

@@ -53,14 +53,19 @@ class RegisterBook : AppCompatActivity() {
             val comment = binding.inputComment.text.toString()
 
 
-
-
+            //タイトル名は必須
             if (title.isEmpty()) {
                 Toast.makeText(this, "Please Enter the title of the Book.", Toast.LENGTH_SHORT).show()
             } else {
                 dbref = FirebaseDatabase.getInstance().reference
+
+                // Books/　のパスにノードを新しく作成、名前の指定がないため、IDが自動的に作成される？
                 val bookRef = dbref.child("Books").push()
-                val bookItem = Book(title, date, comment, false, bookRef.key)
+
+                //　Book オブジェクトを作成、タイトル、日付、コメント、自動的割り当てられたIDをKEYのフィールドに追加
+                val bookItem = Book(title, date, comment, bookRef.key)
+
+                //　Book オブジェクトを作成したノードにアサイン
                 bookRef.setValue(bookItem)
                 finish()
             }
